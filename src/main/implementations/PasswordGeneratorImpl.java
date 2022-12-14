@@ -1,4 +1,11 @@
 package main.implementations;
 
-public class PasswordGeneratorImpl {
+import main.interfaces.PasswordGenerator;
+
+public class PasswordGeneratorImpl implements PasswordGenerator {
+
+    @Override
+    public String generatePassword(int length) {
+        return null;
+    }
 }
