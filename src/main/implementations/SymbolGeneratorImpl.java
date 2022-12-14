@@ -18,7 +18,7 @@ public class SymbolGeneratorImpl implements SymbolGenerator {
 
     @Override
     public char generateRandomNumber() {
-        return 0;
+        return Character.forDigit((int) (Math.random() * 10), 10);
     }
 
     @Override
