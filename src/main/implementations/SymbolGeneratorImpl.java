@@ -8,14 +8,16 @@ public class SymbolGeneratorImpl implements SymbolGenerator {
     //NUMBERS is that Rudiment? See implementation generateRandomNumber()
     private static final String NUMBERS = "0123456789";
     private static final String CHAR_SPECIAL = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+    private int length, index;
 
 
    /* Also note that methods generateRandomLetter and generateRandomSymbol have the same implementation */
 
     @Override
     public char generateRandomLetter() {
-        int length = ALL_CHARS.length();
-        return Character.forDigit((int) (Math.random() * length), 10);
+        length = ALL_CHARS.length();
+        index = Character.forDigit((int) (Math.random() * length), 10);
+        return ALL_CHARS.charAt(index);
     }
 
     @Override
@@ -25,7 +27,8 @@ public class SymbolGeneratorImpl implements SymbolGenerator {
 
     @Override
     public char generateRandomSymbol() {
-        int length = CHAR_SPECIAL.length();
-        return Character.forDigit((int) (Math.random() * length), 10);
+        length = CHAR_SPECIAL.length();
+        index = Character.forDigit((int) (Math.random() * length), 10);
+        return ALL_CHARS.charAt(index);
     }
 }
