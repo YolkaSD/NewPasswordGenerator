@@ -33,7 +33,6 @@ public class PasswordGeneratorImpl implements PasswordGenerator {
                }
             }
         }
-        System.out.println(String.valueOf(passBuilder));
         return String.valueOf(passBuilder);
     }
 }
