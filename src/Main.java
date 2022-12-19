@@ -10,7 +10,9 @@ public class Main {
 
         PasswordGenerator generator = new PasswordGeneratorImpl(sg);
 
-
+        /*
+        failed .*\d.*] and *[a-zA-Z].*]
+        */
         try {
             String password = generator.generatePassword(15);
             if (password.length() != 15) throw new AssertionError();
