@@ -11,17 +11,29 @@ public class PasswordGeneratorImpl implements PasswordGenerator {
         this.symbolGenerator = symbolGenerator;
     }
     @Override
-    public String generatePassword(int length) throws RuntimeException{
+    public String generatePassword(int length){
         if(length < MIN_LENGTH || length > MAX_LENGTH) {
             throw new RuntimeException("Incorrect password length");
         }
-        StringBuilder passBuilder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            passBuilder.append(symbolGenerator.generateRandomSymbol())
-                    .append(symbolGenerator.generateRandomLetter())
-                    .append(symbolGenerator.generateRandomNumber());
+        StringBuilder passBuilder = new StringBuilder().append(symbolGenerator.generateRandomNumber())
+                .append(symbolGenerator.generateRandomSymbol())
+                .append(symbolGenerator.generateRandomLetter());
+
+        int randomCount;
+        for (int i = 3; i < length; i++) {
+            randomCount = (int) (Math.random() * 3);
+            switch (randomCount) {
+                case 1:
+                    passBuilder.append(symbolGenerator.generateRandomLetter());
+                    break;
+                case 2:
+                    passBuilder.append(symbolGenerator.generateRandomNumber());
+                    break;
+                default:
+                    passBuilder.append(symbolGenerator.generateRandomSymbol());
+                    break;
+            }
         }
-        passBuilder.delete(length, length * 3);
         return passBuilder.toString();
     }
 }
