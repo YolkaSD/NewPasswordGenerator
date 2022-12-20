@@ -19,20 +19,15 @@ public class PasswordGeneratorImpl implements PasswordGenerator {
                 .append(symbolGenerator.generateRandomSymbol())
                 .append(symbolGenerator.generateRandomLetter());
 
+        char[] chars = new char[3];
         int randomCount;
-        for (int i = 3; i < length; i++) {
+        for (int i = 0; i < length - 3; i++) {
+            chars[0] = symbolGenerator.generateRandomLetter();
+            chars[1] = symbolGenerator.generateRandomSymbol();
+            chars[2] = symbolGenerator.generateRandomNumber();
+
             randomCount = (int) (Math.random() * 3);
-            switch (randomCount) {
-                case 1:
-                    passBuilder.append(symbolGenerator.generateRandomLetter());
-                    break;
-                case 2:
-                    passBuilder.append(symbolGenerator.generateRandomNumber());
-                    break;
-                default:
-                    passBuilder.append(symbolGenerator.generateRandomSymbol());
-                    break;
-            }
+            passBuilder.append(chars[randomCount]);
         }
         return passBuilder.toString();
     }
