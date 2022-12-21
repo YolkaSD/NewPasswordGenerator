@@ -29,6 +29,7 @@ public class ConsoleUserInterface {
             }
             index++;
         }
+        scanner.close();
         return userArguments;
     }
 }
