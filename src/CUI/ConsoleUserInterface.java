@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class ConsoleUserInterface {
     public int[] start(){
         int[] userArguments = new int[3];
+        //String[] arguments Make it a class field?
         String[] arguments = {"numbers", "symbols", "special symbols"};
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter password options");
