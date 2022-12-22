@@ -16,8 +16,7 @@ public class ConsoleUserInterface {
         while (!isCorrectInput)
         {
             String input = scanner.nextLine();
-            //Repeating digits pass "^[1-3]{1,3}$"
-            if (!input.isEmpty() && input.matches("^[1-3]{1,3}$")) {
+            if (!input.isEmpty() && input.matches("(?!.*(\\d).*\\1)^[123]{1,3}$")) {
                 userArguments.append(input);
                 isCorrectInput = true;
             } else {
