@@ -3,9 +3,23 @@ package CUI;
 import java.util.Scanner;
 
 public class ConsoleUserInterface {
+    private final static int MIN_LENGTH = 4;
+    private final static int MAX_LENGTH = 99;
     private String userConfig;
+    private int userLength;
+    private final Scanner scanner = new Scanner(System.in);
     public void start(){
-        Scanner scanner = new Scanner(System.in);
+        setUserLength();
+        setUserConfig();
+        scanner.close();
+    }
+    public String getUserConfig() {
+        return userConfig;
+    }
+    public int getUserLength() {
+        return userLength;
+    }
+    private void setUserConfig(){
         String configMsg =
                 "1 - digits (0-9)\n" +
                 "2 - upper case (A-Z)\n" +
@@ -33,15 +47,32 @@ public class ConsoleUserInterface {
                 isCorrectInput = true;
                 specInput = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n";
             } else if (firstInput.equals("0")){
-                isCorrectInput = true;
+                System.exit(-1);
             } else {
                 System.out.format("Plz, Please enter a components as required \n%s", configMsg);
             }
         }
         userConfig = firstInput + specInput;
     }
-    public String getUserConfig() {
-        return userConfig;
+    private void setUserLength(){
+        String configMsg =
+                "Please enter password length from 4 to 99\n" +
+                "0 - EXIT\n" +
+                "Input: ";
+        System.out.println(configMsg);
+        boolean isInputCorrect = false;
+        while (!isInputCorrect){
+            String input = scanner.nextLine();
+            if (input.matches("^\\d{1,2}$") && Integer.parseInt(input) > 3) {
+                userLength = Integer.parseInt(input);
+                isInputCorrect = true;
+            } else if (input.equals("0")) {
+                System.exit(-1);
+            } else {
+                System.out.print(configMsg);
+            }
+        }
+
     }
 }
 
