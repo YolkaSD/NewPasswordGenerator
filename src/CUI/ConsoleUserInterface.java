@@ -3,7 +3,8 @@ package CUI;
 import java.util.Scanner;
 
 public class ConsoleUserInterface {
-    public String start(){
+    private String userConfig;
+    public void start(){
         Scanner scanner = new Scanner(System.in);
         String configMsg =
                 "1 - digits (0-9)\n" +
@@ -37,8 +38,10 @@ public class ConsoleUserInterface {
                 System.out.format("Plz, Please enter a components as required \n%s", configMsg);
             }
         }
-        return firstInput + ":" + specInput;
+        userConfig = firstInput + specInput;
     }
-
+    public String getUserConfig() {
+        return userConfig;
+    }
 }
 
