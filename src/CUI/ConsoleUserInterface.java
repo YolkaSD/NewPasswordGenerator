@@ -4,15 +4,19 @@ import java.util.Scanner;
 
 public class ConsoleUserInterface {
     private final static int MIN_LENGTH = 4;
-    private String userConfig;
+    private final StringBuilder userConfig = new StringBuilder();
     private int userLength;
     private final Scanner scanner = new Scanner(System.in);
+
+    public ConsoleUserInterface() {
+    }
+
     public void start(){
         setUserLength();
         setUserConfig();
         scanner.close();
     }
-    public String getUserConfig() {
+    public StringBuilder getUserConfig() {
         return userConfig;
     }
     public int getUserLength() {
@@ -28,19 +32,19 @@ public class ConsoleUserInterface {
                 "0 - EXIT\n" +
                 "input: ";
         System.out.format("Plz, enter the required password components in the format:\n%s", configMsg);
-        String firstInput;
+        String input;
         boolean isCorrectInput = false;
         while (!isCorrectInput)
         {
-            firstInput = scanner.nextLine();
-            if (firstInput.matches("(?!.*(\\d).*\\1)^[1234]{1,4}$")) {
-                userConfig = firstInput + " " + "null";
+            input = scanner.nextLine();
+            if (input.matches("(?!.*(\\d).*\\1)^[1234]{1,4}$")) {
+                userConfig.append(input).append(" ").append("null");
                 isCorrectInput = true;
-            } else if (firstInput.matches("(?!.*(\\d).*\\1)^[1235]{1,4}$")) {
-                userConfig = firstInput;
+            } else if (input.matches("(?!.*(\\d).*\\1)^[1235]{1,4}$")) {
+                userConfig.append(input);
                 setUserSpecialChar();
                 isCorrectInput = true;
-            } else if (firstInput.equals("0")){
+            } else if (input.equals("0")){
                 System.exit(-1);
             } else {
                 System.out.format("Plz, Please enter a components as required \n%s", configMsg);
@@ -77,7 +81,7 @@ public class ConsoleUserInterface {
         while (!isInputCorrect){
             String input = scanner.nextLine();
             if (!input.isEmpty() && input.matches("^[!\"#$%&'()*+,-.\\/:;<=>?@\\[\\\\\\]^_`{|}~]*$")) {
-                userConfig = userConfig + " " + input;
+                userConfig.append(" ").append(input);;
                 isInputCorrect = true;
             }else if(input.equals("0")) {
                 System.exit(-1);

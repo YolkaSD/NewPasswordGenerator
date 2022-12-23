@@ -33,7 +33,7 @@ public class SymbolGeneratorImpl implements SymbolGenerator {
         return getRandomChar(CHAR_LOWER_CASE);
     }
 
-    private char getRandomChar(String original){
+    public char getRandomChar(String original){
         return original.charAt((int) (Math.random() * original.length()));
     }
 }

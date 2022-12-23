@@ -1,19 +1,25 @@
+import CUI.ConsoleUserInterface;
 import main.implementations.PasswordGeneratorImpl;
 import main.implementations.SymbolGeneratorImpl;
 import main.interfaces.PasswordGenerator;
 import main.interfaces.SymbolGenerator;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
+        ConsoleUserInterface consoleUI = new ConsoleUserInterface();
+        consoleUI.start();
 
         SymbolGenerator sg = new SymbolGeneratorImpl();
 
-        PasswordGenerator generator = new PasswordGeneratorImpl(sg);
+        PasswordGenerator generator = new PasswordGeneratorImpl(sg, consoleUI);
+        System.out.println(generator.generatePassword(consoleUI.getUserLength(), consoleUI.getUserConfig()));
 
         /*
         failed .*\d.*] and *[a-zA-Z].*]
         */
-        try {
+        /*try {
             String password = generator.generatePassword(15);
             if (password.length() != 15) throw new AssertionError();
             if (!password.matches(".*\\d.*]")) throw new AssertionError();
@@ -36,6 +42,6 @@ public class Main {
             System.out.println("Test3 failed");
         } catch (Exception e) {
             System.out.println("Test3 passed");
-        }
+        }*/
     }
 }
