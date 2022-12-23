@@ -13,7 +13,7 @@ public class Main {
 
         SymbolGenerator sg = new SymbolGeneratorImpl();
 
-        PasswordGenerator generator = new PasswordGeneratorImpl(sg, consoleUI);
+        PasswordGenerator generator = new PasswordGeneratorImpl(sg);
         System.out.println(generator.generatePassword(consoleUI.getUserLength(), consoleUI.getUserConfig()));
 
         /*

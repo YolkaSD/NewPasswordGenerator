@@ -8,10 +8,8 @@ import java.util.Arrays;
 
 public class PasswordGeneratorImpl implements PasswordGenerator {
     private final SymbolGenerator symbolGenerator;
-    private final ConsoleUserInterface consoleUserInterface;
-    public PasswordGeneratorImpl(SymbolGenerator symbolGenerator, ConsoleUserInterface consoleUserInterface){
+    public PasswordGeneratorImpl(SymbolGenerator symbolGenerator){
         this.symbolGenerator = symbolGenerator;
-        this.consoleUserInterface = consoleUserInterface;
     }
     @Override
     public String generatePassword(int length, StringBuilder userConfig){
